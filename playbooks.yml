@@ -1,0 +1,35 @@
+---
+- name: play1
+  hosts: servers
+  remote_user: ec2-user
+  become: yes
+  vars:
+    name: "httpd"
+  tasks:
+    - name: ensure nginx is at the latest version
+      shell: |
+        amazon-linux-extras install nginx1 -y
+    - name: Stop service httpd, if started
+      ansible.builtin.service:
+        name: nginx
+        state: started
+
+- name: play2
+  hosts: all
+  remote_user: ec2-user
+  become: true
+  vars:
+    container_count: 4
+    default_container_name: docker
+    default_container_image: ubuntu
+    default_container_command: sleep 1d
+
+  tasks:
+    - name: Install docker
+      yum:
+        name: docker
+        state: present
+    - name: Stop service httpd, if started
+      ansible.builtin.service:
+        name: docker
+        state: started

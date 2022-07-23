@@ -1,0 +1,15 @@
+---
+- name: play1
+  hosts: servers
+  remote_user: ec2-user
+  become: yes
+  vars: 
+    abc: "mnqp"
+  tasks:
+    - name: Install httpd
+      command: yum install httpd -y
+
+    - name: Start nginx
+      service:
+        name: nginx
+        state: started
