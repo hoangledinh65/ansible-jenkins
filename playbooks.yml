@@ -14,6 +14,9 @@
         name: nginx
         state: started
 
+
+
+
 - name: play2
   hosts: all
   remote_user: ec2-user

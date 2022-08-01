@@ -7,18 +7,8 @@ pipeline{
             steps{
                 echo "========executing A========"
                 sh 'ansible --version'
+                sh 'ansible-playbook -i inventory playbook.yml'
             }
-        }
-    }
-    post{
-        always{
-            echo "========always========"
-        }
-        success{
-            echo "========pipeline executed successfully ========"
-        }
-        failure{
-            echo "========pipeline execution failed========"
         }
     }
 }

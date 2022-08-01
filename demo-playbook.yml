@@ -7,9 +7,9 @@
     abc: "mnqp"
   tasks:
     - name: Install httpd
-      command: yum install httpd -y
+      command: yum install httpd -y {{ abc }}
 
-    - name: Start nginx
+    - name: Start 
       service:
         name: nginx
         state: started
